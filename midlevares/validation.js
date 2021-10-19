@@ -45,7 +45,9 @@ const validationCreateContact = async (req, res, next) => {
       .integer()
       .min(89000000000)
       .max(89999999999)
-      .required()
+      .required(),
+    favorite: Joi.boolean()
+      .allow('')
   })
 
   const { error } = shema.validate(req.body)
