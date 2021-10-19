@@ -6,10 +6,15 @@ const {
   getContactByIdController,
   getListContactsController,
   removeContactByIdController,
-  updateContactByIdController
+  updateContactByIdController,
+  updateStatusContactController
 } = require('../../controllers/contacts')
 
-const { validationCreateContact, validationUpdateContact } = require('../../midlevares/validation')
+const {
+  validationCreateContact,
+  validationUpdateContact,
+  validationUpdateStatus
+} = require('../../midlevares/validation')
 
 router.get('/', getListContactsController)
 
@@ -20,5 +25,7 @@ router.post('/', validationCreateContact, createContactController)
 router.delete('/:contactId', removeContactByIdController)
 
 router.patch('/:contactId', validationUpdateContact, updateContactByIdController)
+
+router.patch('/:contactId/favorite', validationUpdateStatus, updateStatusContactController)
 
 module.exports = router
