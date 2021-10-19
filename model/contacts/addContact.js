@@ -14,6 +14,7 @@ const addContact = async (body) => {
     return newContact
   } catch (error) {
     console.table(error)
+    process.exit(1)
   }
 }
 
