@@ -1,7 +1,4 @@
-// const fs = require('fs/promises')
-// const path = require('path')
-// const contacts = path.resolve('db', 'contacts.json')
-// const normalizationData = require('./normalizationData')
+
 const Contact = require('../schemas/contact')
 
 const updateContact = async (contactId, body) => {

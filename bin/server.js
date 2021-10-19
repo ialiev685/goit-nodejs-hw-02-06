@@ -11,6 +11,7 @@ const start = async () => {
     })
   } catch (error) {
     console.log('connection error')
+    process.exit(1)
   }
 }
 
