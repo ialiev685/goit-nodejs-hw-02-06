@@ -2,10 +2,7 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 
 const { DB_USER, DB_USER_PASS, DB_NAME } = process.env
-console.log(DB_USER, DB_USER_PASS, DB_NAME)
-// DB_USER=ialiev
-// DB_USER_PASS=7256
-// DB_NAME=dbContacts
+
 
 const DB_HOST = `mongodb+srv://${DB_USER}:${DB_USER_PASS}@cluster0.kvh72.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
 
