@@ -45,7 +45,9 @@ const validationCreateContact = async (req, res, next) => {
       .integer()
       .min(89000000000)
       .max(89999999999)
-      .required()
+      .required(),
+    favorite: Joi.boolean()
+      .allow('')
   })
 
   const { error } = shema.validate(req.body)
@@ -58,7 +60,23 @@ const validationCreateContact = async (req, res, next) => {
   next()
 }
 
+const validationUpdateStatus = (req, res, next) => {
+  const shema = Joi.object({
+    favorite: Joi.boolean()
+      .required(),
+  })
+
+  const { error } = shema.validate(req.body)
+
+  if (error) {
+    res.status(400).json({ message: 'missing field favorite' })
+    return
+  }
+  next()
+}
+
 module.exports = {
   validationUpdateContact,
-  validationCreateContact
+  validationCreateContact,
+  validationUpdateStatus
 }
