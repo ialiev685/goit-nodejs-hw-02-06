@@ -12,9 +12,8 @@ const validationRegisterUser = async (req, res, next) => {
   if (error) {
     const text = error?.details[0].message.replace(/["]/g, '')
     res.status(400).json({
-      Status: 400,
-      data: 'Bad Request',
-      ResponseBody: text,
+      Status: '400 Bad Request',
+      message: text,
     })
     return
   }
