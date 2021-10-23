@@ -24,7 +24,8 @@ const schemaUser = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'user',
   }
-})
+
+}, { versionKey: false, timestamps: true })
 
 const User = model('user', schemaUser)
 

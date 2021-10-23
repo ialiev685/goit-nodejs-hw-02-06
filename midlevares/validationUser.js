@@ -1,7 +1,7 @@
 const Joi = require('joi')
 // const createError = require('http-errors')
 
-const validationRegisterUser = async(req, res, next) => {
+const validationRegisterUser = async (req, res, next) => {
   const schemaRegister = Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required()
