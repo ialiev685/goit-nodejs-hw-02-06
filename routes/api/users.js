@@ -3,10 +3,10 @@ const router = express.Router()
 
 const { registerController, loginController } = require('../../controllers/auth')
 
-const { validationRegisterUser } = require('../../midlevares/validationUser')
+const { validationRegisterUser, authentication } = require('../../midlevares')
 
 router.post('/signup', validationRegisterUser, registerController)
 
-router.post('/login', validationRegisterUser, loginController)
+router.post('/login', authentication, validationRegisterUser, loginController)
 
 module.exports = router

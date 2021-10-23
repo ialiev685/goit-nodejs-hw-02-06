@@ -25,6 +25,7 @@ const loginUser = async(body) => {
   const token = jwt.sign(payload, SECRET_KEY)
 
   const data = await User.findByIdAndUpdate(payload.id, { token })
+  data.token = token
 
   return { status: 200, data }
 }
