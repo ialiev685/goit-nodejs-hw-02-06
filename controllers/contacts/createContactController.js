@@ -1,7 +1,8 @@
 const controlContacts = require('../../model/contacts')
 
 const createContactController = async (req, res, next) => {
-  const updateData = await controlContacts.addContact(req.body)
+  const newContact = { ...req.body, owner: req.user._id }
+  const updateData = await controlContacts.addContact(newContact)
 
   res.status(201).json(updateData)
 }
