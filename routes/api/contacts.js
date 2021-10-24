@@ -13,19 +13,23 @@ const {
 const {
   validationCreateContact,
   validationUpdateContact,
-  validationUpdateStatus
-} = require('../../midlevares/validationContact')
+  validationUpdateStatus,
+  controllerWrappers,
+  authentication
+} = require('../../midlevares')
 
-router.get('/', getListContactsController)
+controllerWrappers(authentication)
 
-router.get('/:contactId', getContactByIdController)
+router.get('/', controllerWrappers(authentication), getListContactsController)
 
-router.post('/', validationCreateContact, createContactController)
+router.get('/:contactId', controllerWrappers(authentication), getContactByIdController)
 
-router.delete('/:contactId', removeContactByIdController)
+router.post('/', controllerWrappers(authentication), validationCreateContact, createContactController)
 
-router.patch('/:contactId', validationUpdateContact, updateContactByIdController)
+router.delete('/:contactId', controllerWrappers(authentication), removeContactByIdController)
 
-router.patch('/:contactId/favorite', validationUpdateStatus, updateStatusContactController)
+router.patch('/:contactId', controllerWrappers(authentication), validationUpdateContact, updateContactByIdController)
+
+router.patch('/:contactId/favorite', controllerWrappers(authentication), validationUpdateStatus, updateStatusContactController)
 
 module.exports = router
