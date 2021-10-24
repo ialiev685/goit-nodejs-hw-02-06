@@ -14,7 +14,7 @@ const {
   validationCreateContact,
   validationUpdateContact,
   validationUpdateStatus
-} = require('../../midlevares/validation')
+} = require('../../midlevares/validationContact')
 
 router.get('/', getListContactsController)
 

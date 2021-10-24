@@ -1,7 +1,7 @@
 const Joi = require('joi')
-// const createError = require('http-errors')
+const { BadRequest } = require('http-errors')
 
-const validationRegisterUser = async (req, res, next) => {
+const validationUser = async (req, res, next) => {
   const schemaRegister = Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required()
@@ -11,13 +11,14 @@ const validationRegisterUser = async (req, res, next) => {
 
   if (error) {
     const text = error?.details[0].message.replace(/["]/g, '')
-    res.status(400).json({
-      Status: '400 Bad Request',
-      message: text,
-    })
-    return
+    // res.status(400).json({
+    //   Status: '400 Bad Request',
+    //   message: text,
+    // })
+    throw new BadRequest(text)
+    // return
   }
   next()
 }
 
-module.exports = { validationRegisterUser }
+module.exports = { validationUser }

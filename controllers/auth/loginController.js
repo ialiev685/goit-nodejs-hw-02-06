@@ -5,7 +5,7 @@ const loginController = async (req, res, next) => {
 
   const { status } = result
 
-  if (status === 401) res.status(400).json({ message: 'Email or password is wrong' })
+  // if (status === 401) res.status(400).json({ message: 'Email or password is wrong' })
   if (status === 200) {
     const { token, email, subscription } = result.data
 
