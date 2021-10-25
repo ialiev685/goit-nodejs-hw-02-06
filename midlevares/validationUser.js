@@ -11,12 +11,8 @@ const validationUser = async (req, res, next) => {
 
   if (error) {
     const text = error?.details[0].message.replace(/["]/g, '')
-    // res.status(400).json({
-    //   Status: '400 Bad Request',
-    //   message: text,
-    // })
+
     throw new BadRequest(text)
-    // return
   }
   next()
 }
@@ -31,12 +27,8 @@ const validationUpSubscription = async (req, res, next) => {
 
   if (error) {
     const text = error?.details[0].message.replace(/["]/g, '')
-    // res.status(400).json({
-    //   Status: '400 Bad Request',
-    //   message: text,
-    // })
+
     throw new BadRequest(text)
-    // return
   }
   next()
 }

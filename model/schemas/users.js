@@ -2,6 +2,8 @@
 const mongoose = require('mongoose')
 const { Schema, model } = mongoose
 
+const arrOptSubscription = ['starter', 'pro', 'business']
+
 const schemaUser = new Schema({
   password: {
     type: String,
@@ -14,7 +16,7 @@ const schemaUser = new Schema({
   },
   subscription: {
     type: String,
-    enum: ['starter', 'pro', 'business'],
+    enum: arrOptSubscription,
     default: 'starter'
   },
   token: {
@@ -26,4 +28,7 @@ const schemaUser = new Schema({
 
 const User = model('user', schemaUser)
 
-module.exports = User
+module.exports = {
+  User,
+  arrOptSubscription
+}

@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs')
-const User = require('../schemas/users.js')
+const { User } = require('../schemas/users.js')
 const { Conflict } = require('http-errors')
 
 const registerUser = async (body) => {
@@ -9,7 +9,6 @@ const registerUser = async (body) => {
     const result = await User.findOne({ email })
     if (result) {
       throw new Conflict('Email in use')
-      // return { status: 409 }
     }
     const salt = bcrypt.genSaltSync(10)
     const hashPassword = bcrypt.hashSync(password, salt)

@@ -1,4 +1,4 @@
-const User = require('../schemas/users.js')
+const { User } = require('../schemas/users.js')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { Unauthorized } = require('http-errors')
@@ -11,7 +11,6 @@ const loginUser = async(body) => {
 
     if (!result) {
       throw new Unauthorized('Email or password is wrong')
-      // return { status: 401 }
     }
 
     const hashPassword = result.password
@@ -19,7 +18,6 @@ const loginUser = async(body) => {
 
     if (!checkPassword) {
       throw new Unauthorized('Email or password is wrong')
-      // return { status: 401 }
     }
 
     const { SECRET_KEY } = process.env
@@ -28,8 +26,8 @@ const loginUser = async(body) => {
     }
     const token = jwt.sign(payload, SECRET_KEY)
 
-    const data = await User.findByIdAndUpdate(payload.id, { token })
-    data.token = token
+    const data = await User.findByIdAndUpdate(payload.id, { token }, { new: true })
+    // data.token = token
 
     return { status: 200, data }
   } catch (error) {

@@ -1,4 +1,4 @@
-const User = require('../schemas/users.js')
+const { User } = require('../schemas/users.js')
 
 const logout = async(id) => {
   try {
