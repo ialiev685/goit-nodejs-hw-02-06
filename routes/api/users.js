@@ -3,7 +3,7 @@ const router = express.Router()
 
 const { registerController, loginController, logoutController, currentUser, upSabscriptionController } = require('../../controllers/auth')
 
-const { validationUser, authentication, controllerWrappers } = require('../../midlevares')
+const { validationUser, validationUpSubscription, authentication, controllerWrappers } = require('../../midlevares')
 
 router.post('/signup', controllerWrappers(validationUser), controllerWrappers(registerController))
 
@@ -13,6 +13,8 @@ router.post('/logout', controllerWrappers(authentication), controllerWrappers(lo
 
 router.post('/current', controllerWrappers(authentication), controllerWrappers(currentUser))
 
-router.patch('/', controllerWrappers(authentication), upSabscriptionController)
+router.patch('/', controllerWrappers(authentication),
+  controllerWrappers(validationUpSubscription),
+  controllerWrappers(upSabscriptionController))
 
 module.exports = router

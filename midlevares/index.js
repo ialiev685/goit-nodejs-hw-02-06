@@ -5,7 +5,7 @@ const {
   validationCreateContact,
   validationUpdateStatus
 } = require('./validationContact')
-const { validationUser } = require('./validationUser')
+const { validationUser, validationUpSubscription } = require('./validationUser')
 
 module.exports = {
   authentication,
@@ -13,5 +13,6 @@ module.exports = {
   validationUpdateContact,
   validationCreateContact,
   validationUpdateStatus,
-  validationUser
+  validationUser,
+  validationUpSubscription
 }

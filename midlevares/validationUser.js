@@ -21,4 +21,27 @@ const validationUser = async (req, res, next) => {
   next()
 }
 
-module.exports = { validationUser }
+const validationUpSubscription = async (req, res, next) => {
+  const schemaRegister = Joi.object({
+
+    subscription: Joi.string().required()
+  })
+
+  const { error } = schemaRegister.validate(req.body)
+
+  if (error) {
+    const text = error?.details[0].message.replace(/["]/g, '')
+    // res.status(400).json({
+    //   Status: '400 Bad Request',
+    //   message: text,
+    // })
+    throw new BadRequest(text)
+    // return
+  }
+  next()
+}
+
+module.exports = {
+  validationUser,
+  validationUpSubscription,
+}
