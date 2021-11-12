@@ -1,7 +1,7 @@
 const Joi = require('joi')
 
 const validationUpdateContact = async (req, res, next) => {
-  const shema = Joi.object({
+  const schema = Joi.object({
     name: Joi.string()
       .alphanum()
       .min(2)
@@ -21,7 +21,7 @@ const validationUpdateContact = async (req, res, next) => {
 
   })
 
-  const { error } = shema.validate(req.body)
+  const { error } = schema.validate(req.body)
 
   if (error) {
     const text = error?.details[0].message.replace(/["]/g, '')
@@ -32,7 +32,7 @@ const validationUpdateContact = async (req, res, next) => {
 }
 
 const validationCreateContact = async (req, res, next) => {
-  const shema = Joi.object({
+  const schema = Joi.object({
     name: Joi.string()
       .alphanum()
       .min(2)
@@ -50,7 +50,7 @@ const validationCreateContact = async (req, res, next) => {
       .allow('')
   })
 
-  const { error } = shema.validate(req.body)
+  const { error } = schema.validate(req.body)
 
   if (error) {
     const text = error?.details[0].message.replace(/["]/g, '')
