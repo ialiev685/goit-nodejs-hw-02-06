@@ -17,4 +17,6 @@ router.patch('/', controllerWrappers(authentication),
   controllerWrappers(validationUpSubscription),
   controllerWrappers(upSabscriptionController))
 
+router.patch('/avatars', controllerWrappers(authentication))
+
 module.exports = router
