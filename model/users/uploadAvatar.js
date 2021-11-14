@@ -13,7 +13,7 @@ const uploadAvatar = async (file, { id }) => {
 
     await fs.rename(pathTmp, pathUser)
 
-    const image = `/public/avatars/${id}/${originalname}`
+    const image = `/avatars/${id}/${originalname}`
 
     const result = await User.findByIdAndUpdate(id, { avatarURL: image }, { new: true }).select('avatarURL')
 
