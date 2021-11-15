@@ -12,7 +12,7 @@ const authentication = async(req, res, next) => {
 
     const { SECRET_KEY } = process.env
     const { id } = jwt.verify(token, SECRET_KEY)
-   
+
     const result = await User.findById(id)
 
     if (!result) {
