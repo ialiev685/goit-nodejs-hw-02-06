@@ -82,7 +82,7 @@ describe('test authentication', () => {
     const mockNext = jest.fn()
 
     mockFn(req, mockRes, mockNext)
-    // expect(() => mockFn(req, mockRes, mockNext)).toThrow('Not authorized')
+
     expect(mockNext).toHaveBeenCalledTimes(1)
     expect(mockNext).toHaveBeenCalledWith()
   })
