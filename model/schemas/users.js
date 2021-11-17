@@ -26,8 +26,20 @@ const schemaUser = new Schema({
   avatarURL: {
     type: String,
   },
+  verify: {
+    type: Boolean,
+    default: false,
+  },
+  verifyToken: {
+    type: String,
+    required: [true, 'Verify token is required'],
+  },
 
 }, { versionKey: false, timestamps: true })
+
+// schemaUser.methods.createVerifyToken = function () {
+//   this.verifyToken = uuidv4()
+// }
 
 const User = model('user', schemaUser)
 

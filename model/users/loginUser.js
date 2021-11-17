@@ -7,10 +7,14 @@ const loginUser = async(body) => {
   try {
     const { email, password } = body
 
-    const result = await User.findOne({ email }, '_id, password')
+    const result = await User.findOne({ email }, '_id password verify')
 
     if (!result) {
       throw new Unauthorized('Email or password is wrong')
+    }
+
+    if (!result.verify) {
+      throw new Unauthorized('User is not verified')
     }
 
     const hashPassword = result.password
