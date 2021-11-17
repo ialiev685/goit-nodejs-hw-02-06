@@ -4,6 +4,7 @@ const logout = require('./logout')
 const upSabscription = require('./upSabscription')
 const uploadAvatar = require('./uploadAvatar')
 const verifyUser = require('./verifyUser')
+const sendVerifyTokenAgain = require('./sendVerifyTokenAgain')
 
 module.exports = {
   registerUser,
@@ -11,5 +12,6 @@ module.exports = {
   logout,
   upSabscription,
   uploadAvatar,
-  verifyUser
+  verifyUser,
+  sendVerifyTokenAgain
 }

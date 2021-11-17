@@ -8,10 +8,19 @@ const {
   currentUser,
   upSabscriptionController,
   uploadAvatarController,
-  verifyController
+  verifyController,
+  sendVerifyTokenAgainController
 } = require('../../controllers/auth')
 
-const { validationUser, validationUpSubscription, authentication, controllerWrappers, upload } = require('../../midlevares')
+const {
+  validationUser,
+  validationUpSubscription,
+  validationVerifyUser,
+  authentication,
+  controllerWrappers,
+  upload,
+
+} = require('../../midlevares')
 
 router.post('/signup', controllerWrappers(validationUser), controllerWrappers(registerController))
 
@@ -29,5 +38,7 @@ router.patch('/avatars/:id', controllerWrappers(authentication), upload.single('
   controllerWrappers(uploadAvatarController))
 
 router.get('/verify/:verificationToken', controllerWrappers(verifyController))
+
+router.post('/verify', controllerWrappers(validationVerifyUser), controllerWrappers(sendVerifyTokenAgainController))
 
 module.exports = router

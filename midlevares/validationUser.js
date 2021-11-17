@@ -17,6 +17,22 @@ const validationUser = async (req, res, next) => {
   next()
 }
 
+const validationVerifyUser = async (req, res, next) => {
+  console.log('!')
+  const schemaRegister = Joi.object({
+    email: Joi.string().email().required(),
+  })
+
+  const { error } = schemaRegister.validate(req.body)
+
+  if (error) {
+    const text = error?.details[0].message.replace(/["]/g, '')
+
+    throw new BadRequest(text)
+  }
+  next()
+}
+
 const validationUpSubscription = async (req, res, next) => {
   const schemaRegister = Joi.object({
 
@@ -36,4 +52,5 @@ const validationUpSubscription = async (req, res, next) => {
 module.exports = {
   validationUser,
   validationUpSubscription,
+  validationVerifyUser
 }
