@@ -6,6 +6,7 @@ const {
   validationUpdateStatus
 } = require('./validationContact')
 const { validationUser, validationUpSubscription } = require('./validationUser')
+const { upload } = require('./upload')
 
 module.exports = {
   authentication,
@@ -14,5 +15,6 @@ module.exports = {
   validationCreateContact,
   validationUpdateStatus,
   validationUser,
-  validationUpSubscription
+  validationUpSubscription,
+  upload
 }

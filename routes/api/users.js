@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
-const { registerController, loginController, logoutController, currentUser, upSabscriptionController } = require('../../controllers/auth')
+const { registerController, loginController, logoutController, currentUser, upSabscriptionController, uploadAvatarController } = require('../../controllers/auth')
 
-const { validationUser, validationUpSubscription, authentication, controllerWrappers } = require('../../midlevares')
+const { validationUser, validationUpSubscription, authentication, controllerWrappers, upload } = require('../../midlevares')
 
 router.post('/signup', controllerWrappers(validationUser), controllerWrappers(registerController))
 
@@ -16,5 +16,8 @@ router.post('/current', controllerWrappers(authentication), controllerWrappers(c
 router.patch('/', controllerWrappers(authentication),
   controllerWrappers(validationUpSubscription),
   controllerWrappers(upSabscriptionController))
+
+router.patch('/avatars/:id', controllerWrappers(authentication), upload.single('avatar'),
+  controllerWrappers(uploadAvatarController))
 
 module.exports = router

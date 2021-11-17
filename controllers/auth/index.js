@@ -3,11 +3,13 @@ const loginController = require('./loginController')
 const logoutController = require('./logoutController')
 const currentUser = require('./currentUser')
 const upSabscriptionController = require('./upSabscriptionController')
+const uploadAvatarController = require('./uploadAvatarController')
 
 module.exports = {
   registerController,
   loginController,
   logoutController,
   currentUser,
-  upSabscriptionController
+  upSabscriptionController,
+  uploadAvatarController
 }
