@@ -1,9 +1,26 @@
 const express = require('express')
 const router = express.Router()
 
-const { registerController, loginController, logoutController, currentUser, upSabscriptionController, uploadAvatarController } = require('../../controllers/auth')
+const {
+  registerController,
+  loginController,
+  logoutController,
+  currentUser,
+  upSabscriptionController,
+  uploadAvatarController,
+  verifyController,
+  sendVerifyTokenAgainController
+} = require('../../controllers/auth')
 
-const { validationUser, validationUpSubscription, authentication, controllerWrappers, upload } = require('../../midlevares')
+const {
+  validationUser,
+  validationUpSubscription,
+  validationVerifyUser,
+  authentication,
+  controllerWrappers,
+  upload,
+
+} = require('../../midlevares')
 
 router.post('/signup', controllerWrappers(validationUser), controllerWrappers(registerController))
 
@@ -19,5 +36,9 @@ router.patch('/', controllerWrappers(authentication),
 
 router.patch('/avatars/:id', controllerWrappers(authentication), upload.single('avatar'),
   controllerWrappers(uploadAvatarController))
+
+router.get('/verify/:verificationToken', controllerWrappers(verifyController))
+
+router.post('/verify', controllerWrappers(validationVerifyUser), controllerWrappers(sendVerifyTokenAgainController))
 
 module.exports = router
