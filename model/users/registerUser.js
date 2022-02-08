@@ -30,7 +30,7 @@ const registerUser = async (body) => {
     const msg = {
       to: email,
       subject: "Регистрация на сайте",
-      html: `<p>Вы прошли регистрацию, пожалуйста подтвердите свой Email кликнув по <a href='http://localhost:3001/users/verify/${verifyToken}'><strong>ссылке подтверждения</strong></a></p>`,
+      html: `<p>Вы прошли регистрацию, пожалуйста подтвердите свой Email кликнув по <a href='https://phonebook-server-ia.herokuapp.com/users/verify/${verifyToken}'><strong>ссылке подтверждения</strong></a></p>`,
     };
 
     await sendMail(msg);
