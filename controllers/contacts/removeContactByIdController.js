@@ -1,4 +1,3 @@
-
 const controlContacts = require('../../model/contacts')
 
 const removeContactByIdController = async (req, res, next) => {

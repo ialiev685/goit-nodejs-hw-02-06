@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const { User } = require('../model/schemas/users')
 const { Unauthorized } = require('http-errors')
 
-const authentication = async(req, res, next) => {
+const authentication = async (req, res, next) => {
   try {
     const [bearer, token] = req.headers.authorization.split(' ')
 

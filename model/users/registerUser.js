@@ -9,7 +9,7 @@ const { v4: uuidv4 } = require('uuid')
 
 const registerUser = async (body) => {
   try {
-    const { email, password } = body
+    const { email, password, name } = body
 
     const result = await User.findOne({ email })
     if (result) {
@@ -30,12 +30,18 @@ const registerUser = async (body) => {
     const msg = {
       to: email,
       subject: 'Регистрация на сайте',
-      html: `<p>Вы прошли регистрацию, пожалуйста подтвердите свой Email кликнув по <a href='http://localhost:3000/users/verify/${verifyToken}'><strong>ссылке подтверждения</strong></a></p>`,
+      html: `<p>Вы прошли регистрацию, пожалуйста подтвердите свой Email кликнув по <a href='https://phonebook-server-ia.herokuapp.com/users/verify/${verifyToken}'><strong>ссылке подтверждения</strong></a></p>`,
     }
 
     await sendMail(msg)
 
-    const data = await User.create({ email, password: hashPassword, avatarURL, verifyToken })
+    const data = await User.create({
+      email,
+      password: hashPassword,
+      name,
+      avatarURL,
+      verifyToken,
+    })
 
     const { id } = data
     const avatarDir = path.join(__dirname, '../../public/avatars', id)

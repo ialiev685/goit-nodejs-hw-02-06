@@ -1,56 +1,55 @@
-const Joi = require('joi')
-const { BadRequest } = require('http-errors')
+const Joi = require("joi");
+const { BadRequest } = require("http-errors");
 
 const validationUser = async (req, res, next) => {
   const schemaRegister = Joi.object({
+    name: Joi.string().optional(),
     email: Joi.string().email().required(),
-    password: Joi.string().min(6).required()
-  })
+    password: Joi.string().min(6).required(),
+  });
 
-  const { error } = schemaRegister.validate(req.body)
+  const { error } = schemaRegister.validate(req.body);
 
   if (error) {
-    const text = error?.details[0].message.replace(/["]/g, '')
+    const text = error?.details[0].message.replace(/["]/g, "");
 
-    throw new BadRequest(text)
+    throw new BadRequest(text);
   }
-  next()
-}
+  next();
+};
 
 const validationVerifyUser = async (req, res, next) => {
-  console.log('!')
   const schemaRegister = Joi.object({
     email: Joi.string().email().required(),
-  })
+  });
 
-  const { error } = schemaRegister.validate(req.body)
+  const { error } = schemaRegister.validate(req.body);
 
   if (error) {
-    const text = error?.details[0].message.replace(/["]/g, '')
+    const text = error?.details[0].message.replace(/["]/g, "");
 
-    throw new BadRequest(text)
+    throw new BadRequest(text);
   }
-  next()
-}
+  next();
+};
 
 const validationUpSubscription = async (req, res, next) => {
   const schemaRegister = Joi.object({
+    subscription: Joi.string().required(),
+  });
 
-    subscription: Joi.string().required()
-  })
-
-  const { error } = schemaRegister.validate(req.body)
+  const { error } = schemaRegister.validate(req.body);
 
   if (error) {
-    const text = error?.details[0].message.replace(/["]/g, '')
+    const text = error?.details[0].message.replace(/["]/g, "");
 
-    throw new BadRequest(text)
+    throw new BadRequest(text);
   }
-  next()
-}
+  next();
+};
 
 module.exports = {
   validationUser,
   validationUpSubscription,
-  validationVerifyUser
-}
+  validationVerifyUser,
+};
