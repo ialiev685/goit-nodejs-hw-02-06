@@ -1,27 +1,27 @@
-const Joi = require("joi");
+const Joi = require('joi')
 
 const validationUpdateContact = async (req, res, next) => {
   const schema = Joi.object({
-    name: Joi.any().allow(""),
+    name: Joi.any().allow(''),
     number: Joi.number()
       .integer()
       .min(89000000000)
       .max(89999999999)
-      .allow("")
+      .allow('')
       .required(),
     // name: Joi.string().alphanum().min(2).max(10).allow("").required(),
     // email: Joi.string().email().allow("").required(),
-  });
+  })
 
-  const { error } = schema.validate(req.body);
+  const { error } = schema.validate(req.body)
 
   if (error) {
-    const text = error?.details[0].message.replace(/["]/g, "");
-    res.status(400).json({ message: text });
-    return;
+    const text = error?.details[0].message.replace(/["]/g, '')
+    res.status(400).json({ message: text })
+    return
   }
-  next();
-};
+  next()
+}
 
 const validationCreateContact = async (req, res, next) => {
   const schema = Joi.object({
@@ -33,34 +33,34 @@ const validationCreateContact = async (req, res, next) => {
     //   .required(),
     // favorite: Joi.boolean()
     //   .allow('')
-  });
+  })
 
-  const { error } = schema.validate(req.body);
+  const { error } = schema.validate(req.body)
 
   if (error) {
-    const text = error?.details[0].message.replace(/["]/g, "");
-    res.status(400).json({ message: text });
-    return;
+    const text = error?.details[0].message.replace(/["]/g, '')
+    res.status(400).json({ message: text })
+    return
   }
-  next();
-};
+  next()
+}
 
 const validationUpdateStatus = (req, res, next) => {
   const shema = Joi.object({
     favorite: Joi.boolean().required(),
-  });
+  })
 
-  const { error } = shema.validate(req.body);
+  const { error } = shema.validate(req.body)
 
   if (error) {
-    res.status(400).json({ message: "missing field favorite" });
-    return;
+    res.status(400).json({ message: 'missing field favorite' })
+    return
   }
-  next();
-};
+  next()
+}
 
 module.exports = {
   validationUpdateContact,
   validationCreateContact,
   validationUpdateStatus,
-};
+}
