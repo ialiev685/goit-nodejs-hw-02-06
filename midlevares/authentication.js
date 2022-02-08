@@ -4,7 +4,7 @@ const { Unauthorized } = require("http-errors");
 
 const authentication = async (req, res, next) => {
   try {
-    console.log("авторизация", req);
+    console.log(req.body);
     const [bearer, token] = req.headers.authorization.split(" ");
 
     if (bearer !== "Bearer") {
